@@ -1,22 +1,24 @@
-[
-  {
-    "name": "",
-    "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
-    "tags": [
-      {
-        "label": "Butterfly",
-        "timestamp": 77
-      }
-    ]
-  },
-  {
-    "name": "",
-    "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
-    "tags": [
-      {
-        "label": "Butterfly",
-        "timestamp": 77
-      }
-    ]
-  }
-]
+{
+  "videos": [
+    {
+      "name": "Big Bunny",
+      "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77
+        }
+      ]
+    },
+    {
+      "name": "Big Bunny",
+      "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77
+        }
+      ]
+    }
+  ]
+}
