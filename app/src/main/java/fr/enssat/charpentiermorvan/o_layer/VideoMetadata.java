@@ -14,9 +14,13 @@ public class VideoMetadata {
 
     public VideoMetadata(Object object) {
 
-        this.id = object.getId();
+        /*this.id = object.getId();
         this.name = object.getName();
-        this.tags = object.getTags();
+        this.tags = object.getTags();*/
+        // TODO delete lines below when JSON parser is done
+        this.id = 0;
+        this.name = null;
+        this.tags = null;
 
     }
 
