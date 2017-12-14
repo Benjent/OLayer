@@ -1,6 +1,13 @@
 package fr.enssat.charpentiermorvan.o_layer;
 
-import java.util.ArrayList;
+import android.os.Parcel;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by benjent on 07/12/17.
@@ -8,24 +15,27 @@ import java.util.ArrayList;
 
 public class VideoMetadata {
 
-    int id;
-    String name;
-    ArrayList tags;
+    private String name;
+    private String url;
+    private HashMap<String, Integer> tags;
 
-    public VideoMetadata(Object object) {
-
-        /*this.id = object.getId();
-        this.name = object.getName();
-        this.tags = object.getTags();*/
-        // TODO delete lines below when JSON parser is done
-        this.id = 0;
+    public VideoMetadata(JSONObject videoMetadata) {
         this.name = null;
-        this.tags = null;
 
-    }
+        try {
+            setName(videoMetadata.getString("name"));
+            setUrl(videoMetadata.getString("url"));
 
-    public int getId() {
-        return id;
+            JSONArray videoTags = videoMetadata.getJSONArray("tags");
+
+            for (int i = 0; i < videoTags.length(); i++) {
+                JSONObject videoTag = (JSONObject) videoTags.get(i);
+                this.tags.put(videoTag.getString("label"), videoTag.getInt("timestamp"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getName() {
@@ -36,13 +46,17 @@ public class VideoMetadata {
         this.name = name;
     }
 
-    public ArrayList getTags() {
+    public HashMap<String, Integer> getTags() {
         return tags;
     }
 
-    public void addTag(String tag) {
-        if(tag != null) {
-            this.tags.add(tag);
-        }
+    public void addTag(String label, Integer timestamp) {
+        this.tags.put(label, timestamp);
     }
+
+    public void setUrl(String uri) {
+        this.url = uri;
+    }
+
+    public String getUrl() { return this.url; }
 }

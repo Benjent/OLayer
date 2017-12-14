@@ -1,5 +1,6 @@
 package fr.enssat.charpentiermorvan.o_layer;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
@@ -24,16 +25,19 @@ public class VideoViewActivity extends Activity {
     WebView wikiView;
 
     // Insert your Video URL
-    String VideoURL = "http://www.androidbegin.com/tutorial/AndroidCommercial.3gp";
+    String VideoURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.videoview_main);
+      
+        Intent intent = getIntent();
+        VideoURL = intent.getStringExtra(MainActivity.VIDEO_URL_MESSAGE);
 
         // ********** VIDEO ********** //
-
         videoView = (VideoView) findViewById(R.id.VideoView);
+
         // Execute StreamVideo AsyncTask
 
         // Create a progressbar

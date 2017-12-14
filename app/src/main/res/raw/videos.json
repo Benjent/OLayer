@@ -1,0 +1,30 @@
+{
+  "videos": [
+    {
+      "name": "Big Bunny",
+      "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
+      "thumbnail": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Big_Buck_Bunny_-_forest.jpg"
+      },
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77
+        }
+      ]
+    },
+    {
+      "name": "Big Bunny",
+      "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
+      "thumbnail": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Big_Buck_Bunny_-_forest.jpg"
+      },
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77
+        }
+      ]
+    }
+  ]
+}
