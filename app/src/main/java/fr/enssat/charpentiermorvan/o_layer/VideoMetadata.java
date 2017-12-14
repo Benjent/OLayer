@@ -16,7 +16,7 @@ import java.util.List;
 public class VideoMetadata {
 
     private String name;
-    private String uri;
+    private String url;
     private HashMap<String, Integer> tags;
 
     public VideoMetadata(JSONObject videoMetadata) {
@@ -55,6 +55,8 @@ public class VideoMetadata {
     }
 
     public void setUrl(String uri) {
-        this.uri = uri;
+        this.url = uri;
     }
+
+    public String getUrl() { return this.url; }
 }

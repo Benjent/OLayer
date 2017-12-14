@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity {
 
+    static String VIDEO_URL_MESSAGE = "video_url";
     Button button;
 
     @Override
@@ -21,23 +25,20 @@ public class MainActivity extends Activity {
 
         VideoMetadataParser parser = new VideoMetadataParser(this);
 
-        // Locate the button in activity_main.xml
-        button = (Button) findViewById(R.id.MyButton);
+        final ArrayList<VideoMetadata> videosMetadata = parser.parse();
 
-        // Capture button clicks
-        button.setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
-
-                // Start NewActivity.class
+        ListView videoListView = (ListView) findViewById(R.id.VideoListView);
+        videoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 Intent myIntent = new Intent(MainActivity.this,
                         VideoViewActivity.class);
+                myIntent.putExtra(VIDEO_URL_MESSAGE, videosMetadata.get(position).getUrl());
                 startActivity(myIntent);
             }
         });
 
-        ListView videoListView = (ListView) findViewById(R.id.VideoListView);
-
-        VideoListViewAdapter videoListViewAdapter = new VideoListViewAdapter(this, parser.parse());
+        VideoListViewAdapter videoListViewAdapter = new VideoListViewAdapter(this, videosMetadata);
 
         videoListView.setAdapter(videoListViewAdapter);
     }
