@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
+    static String VIDEO_URL_MESSAGE = "video_url";
     Button button;
 
     @Override
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
                 // Start NewActivity.class
                 Intent myIntent = new Intent(MainActivity.this,
                         VideoViewActivity.class);
+                myIntent.putExtra(VIDEO_URL_MESSAGE, "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4");
                 startActivity(myIntent);
             }
         });

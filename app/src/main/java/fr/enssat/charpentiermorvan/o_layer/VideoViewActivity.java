@@ -1,5 +1,6 @@
 package fr.enssat.charpentiermorvan.o_layer;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
@@ -21,12 +22,16 @@ public class VideoViewActivity extends Activity {
     VideoView videoview;
 
     // Insert your Video URL
-    String VideoURL = "http://www.androidbegin.com/tutorial/AndroidCommercial.3gp";
+    String VideoURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.videoview_main);
+
+        Intent intent = getIntent();
+        VideoURL = intent.getStringExtra(MainActivity.VIDEO_URL_MESSAGE);
+
         // Find your VideoView in your video_main.xml layout
         videoview = (VideoView) findViewById(R.id.VideoView);
         // Execute StreamVideo AsyncTask
