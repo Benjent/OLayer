@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.util.Log;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 /**
@@ -17,9 +20,9 @@ import android.widget.VideoView;
 
 public class VideoViewActivity extends Activity {
 
-    // Declare variables
     ProgressDialog pDialog;
-    VideoView videoview;
+    VideoView videoView;
+    WebView wikiView;
 
     // Insert your Video URL
     String VideoURL;
@@ -28,12 +31,13 @@ public class VideoViewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.videoview_main);
-
+      
         Intent intent = getIntent();
         VideoURL = intent.getStringExtra(MainActivity.VIDEO_URL_MESSAGE);
 
-        // Find your VideoView in your video_main.xml layout
-        videoview = (VideoView) findViewById(R.id.VideoView);
+        // ********** VIDEO ********** //
+        videoView = (VideoView) findViewById(R.id.VideoView);
+
         // Execute StreamVideo AsyncTask
 
         // Create a progressbar
@@ -48,25 +52,37 @@ public class VideoViewActivity extends Activity {
             // Start the MediaController
             MediaController mediacontroller = new MediaController(
                     VideoViewActivity.this);
-            mediacontroller.setAnchorView(videoview);
+            mediacontroller.setAnchorView(videoView);
             // Get the URL from String VideoURL
             Uri video = Uri.parse(VideoURL);
-            videoview.setMediaController(mediacontroller);
-            videoview.setVideoURI(video);
+            videoView.setMediaController(mediacontroller);
+            videoView.setVideoURI(video);
 
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
 
-        videoview.requestFocus();
-        videoview.setOnPreparedListener(new OnPreparedListener() {
+        videoView.requestFocus();
+        videoView.setOnPreparedListener(new OnPreparedListener() {
             // Close the progress bar and play the video
             public void onPrepared(MediaPlayer mp) {
                 pDialog.dismiss();
-                videoview.start();
+                videoView.start();
             }
         });
+
+        // ********** WIKI ********** //
+
+        wikiView = (WebView) findViewById(R.id.WikiView);
+        wikiView.getSettings().setJavaScriptEnabled(true);
+
+        wikiView.setWebViewClient(new WebViewClient());
+
+        //wikiView.loadUrl("https://en.wikipedia.org/wiki/Main_Page");
+        wikiView.loadUrl("https://www.google.fr");
+
+        //setContentView(wikiView);
 
     }
 }
