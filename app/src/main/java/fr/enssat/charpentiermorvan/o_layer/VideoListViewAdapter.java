@@ -30,6 +30,7 @@ public class VideoListViewAdapter extends ArrayAdapter<VideoMetadata> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.video_list_item, parent, false);
+
         TextView textView = (TextView) itemView.findViewById(R.id.name);
 
         textView.setText(metadataArray.get(position).getName());
