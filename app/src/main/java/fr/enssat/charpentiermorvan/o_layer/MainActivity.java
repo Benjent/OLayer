@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
@@ -17,6 +18,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Get the layout from video_main.xml
         setContentView(R.layout.activity_main);
+
+        VideoMetadataParser parser = new VideoMetadataParser(this);
 
         // Locate the button in activity_main.xml
         button = (Button) findViewById(R.id.MyButton);
@@ -31,5 +34,11 @@ public class MainActivity extends Activity {
                 startActivity(myIntent);
             }
         });
+
+        ListView videoListView = (ListView) findViewById(R.id.VideoListView);
+
+        VideoListViewAdapter videoListViewAdapter = new VideoListViewAdapter(this, parser.parse());
+
+        videoListView.setAdapter(videoListViewAdapter);
     }
 }
