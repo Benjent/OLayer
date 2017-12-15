@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -29,9 +30,16 @@ public class VideoListViewAdapter extends ArrayAdapter<VideoMetadata> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         View itemView = inflater.inflate(R.layout.video_list_item, parent, false);
 
+        ImageView thumbnailImageView = itemView.findViewById(R.id.thumbnail);
+
         TextView textView = (TextView) itemView.findViewById(R.id.name);
+
+        TaskDownloadImage t = new TaskDownloadImage(thumbnailImageView);
+        t.execute(metadataArray.get(position).getThumbnailUrl());
+
 
         textView.setText(metadataArray.get(position).getName());
 
