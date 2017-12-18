@@ -3,5 +3,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="button">Stream Video</string>
-    <string name="tag">Tag</string>
+    <string name="tag1">Bunny</string>
+    <string name="tag2">Butterfly</string>
+    <string name="tag3">Squirrel</string>
 </resources>

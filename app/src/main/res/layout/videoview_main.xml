@@ -26,21 +26,33 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/Bunny"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tag" />
+            <ListView
+                android:id="@+id/tagListView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tag" />
+                <Button
+                    android:id="@+id/Bunny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tag1"
+                    android:onClick="ButtonOnClick"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tag" />
+                <Button
+                    android:id="@+id/Butterfly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tag2"
+                    android:onClick="ButtonOnClick"/>
+
+                <Button
+                    android:id="@+id/Squirrel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tag3"
+                    android:onClick="ButtonOnClick"/>
+
+            </ListView>
 
         </LinearLayout>
 

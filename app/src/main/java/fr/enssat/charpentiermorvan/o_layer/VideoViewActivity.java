@@ -8,11 +8,17 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import java.util.ArrayList;
 
 /**
  * Created by benjent on 07/12/17.
@@ -24,8 +30,9 @@ public class VideoViewActivity extends Activity {
     VideoView videoView;
     WebView wikiView;
 
-    // Insert your Video URL
     String VideoURL;
+    private ArrayList<Tag> tags;
+    Button tag1, tag2, tag3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,27 @@ public class VideoViewActivity extends Activity {
                 videoView.start();
             }
         });
+
+        // ********** TAGS ********** //
+        // Todo get the video tags instead of declaring dummy values here
+        /*tag1 = (Button) findViewById(R.id.Bunny);
+        tag2 = (Button) findViewById(R.id.Butterfly);
+        tag3 = (Button) findViewById(R.id.Squirrel);*/
+
+        tags.add(new Tag("Bunny", 10));
+        tags.add(new Tag("Butterfly", 80));
+        tags.add(new Tag("Squirrel", 222));
+
+        ListView tagListView = (ListView) findViewById(R.id.tagListView);
+        tagListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                tags.get(position);
+            }
+        });
+
+        TagListViewAdapter tagListViewAdapter = new TagListViewAdapter(this, tags);
+        tagListView.setAdapter(tagListViewAdapter);
 
         // ********** WIKI ********** //
 
