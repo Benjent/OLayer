@@ -17,14 +17,20 @@ public class VideoMetadata {
 
     private String name;
     private String url;
+    private String thumbnailUrl;
     private HashMap<String, Integer> tags;
 
     public VideoMetadata(JSONObject videoMetadata) {
         this.name = null;
+        this.tags = new HashMap<>();
 
         try {
             setName(videoMetadata.getString("name"));
             setUrl(videoMetadata.getString("url"));
+
+            // Thumbnail
+            JSONObject thumbnail = videoMetadata.getJSONObject("thumbnail");
+            setThumbnailUrl(thumbnail.getString("url"));
 
             JSONArray videoTags = videoMetadata.getJSONArray("tags");
 
@@ -59,4 +65,12 @@ public class VideoMetadata {
     }
 
     public String getUrl() { return this.url; }
+
+    public void setThumbnailUrl(String url) {
+        this.thumbnailUrl = url;
+    }
+
+    public String getThumbnailUrl() {
+        return this.thumbnailUrl;
+    }
 }

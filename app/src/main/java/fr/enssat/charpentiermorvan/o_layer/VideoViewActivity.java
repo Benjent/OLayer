@@ -45,16 +45,6 @@ public class VideoViewActivity extends Activity {
         // ********** VIDEO ********** //
         videoView = (VideoView) findViewById(R.id.VideoView);
 
-        // Execute StreamVideo AsyncTask
-
-        // Create a progressbar
-        pDialog = new ProgressDialog(VideoViewActivity.this);
-        pDialog.setTitle("Android Video Streaming Tutorial");
-        pDialog.setMessage("Buffering...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(false);
-        pDialog.show();
-
         try {
             // Start the MediaController
             MediaController mediacontroller = new MediaController(
@@ -74,7 +64,6 @@ public class VideoViewActivity extends Activity {
         videoView.setOnPreparedListener(new OnPreparedListener() {
             // Close the progress bar and play the video
             public void onPrepared(MediaPlayer mp) {
-                pDialog.dismiss();
                 videoView.start();
             }
         });
