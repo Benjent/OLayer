@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by caillou on 12/7/17.
@@ -30,11 +32,13 @@ public class TagListViewAdapter extends ArrayAdapter<Tag> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.tag_list_item, parent, false);
 
-        /*TextView textView = (TextView) itemView.findViewById(R.id.name);
+        TextView labelTextView = itemView.findViewById(R.id.label);
+        TextView timestampTextView = itemView.findViewById(R.id.timestamp);
 
-        textView.setText(tags.get(position).getLabel());*/
+        labelTextView.setText(tags.get(position).getLabel());
+
+        timestampTextView.setText(Integer.toString(tags.get(position).getTimeStamp()) + "s");
 
         return itemView;
-        // Todo make it so it's not a textview but a button
     }
 }

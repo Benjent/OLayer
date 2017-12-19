@@ -30,9 +30,7 @@ public class VideoViewActivity extends Activity {
     VideoView videoView;
     WebView wikiView;
 
-    String VideoURL;
-    private ArrayList<Tag> tags;
-    Button tag1, tag2, tag3;
+    VideoMetadata videoMetadata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +38,10 @@ public class VideoViewActivity extends Activity {
         setContentView(R.layout.videoview_main);
       
         Intent intent = getIntent();
-        VideoURL = intent.getStringExtra(MainActivity.VIDEO_URL_MESSAGE);
+        videoMetadata = (VideoMetadata) intent.getParcelableExtra(MainActivity.VIDEO_METADATA_MESSAGE);
 
         // ********** VIDEO ********** //
-        videoView = (VideoView) findViewById(R.id.VideoView);
+        videoView = findViewById(R.id.VideoView);
 
         try {
             // Start the MediaController
@@ -51,7 +49,7 @@ public class VideoViewActivity extends Activity {
                     VideoViewActivity.this);
             mediacontroller.setAnchorView(videoView);
             // Get the URL from String VideoURL
-            Uri video = Uri.parse(VideoURL);
+            Uri video = Uri.parse(videoMetadata.getUrl());
             videoView.setMediaController(mediacontroller);
             videoView.setVideoURI(video);
 
@@ -69,24 +67,19 @@ public class VideoViewActivity extends Activity {
         });
 
         // ********** TAGS ********** //
-        // Todo get the video tags instead of declaring dummy values here
-        /*tag1 = (Button) findViewById(R.id.Bunny);
-        tag2 = (Button) findViewById(R.id.Butterfly);
-        tag3 = (Button) findViewById(R.id.Squirrel);*/
-
-        tags.add(new Tag("Bunny", 10));
-        tags.add(new Tag("Butterfly", 80));
-        tags.add(new Tag("Squirrel", 222));
-
         ListView tagListView = (ListView) findViewById(R.id.tagListView);
         tagListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                tags.get(position);
+                videoMetadata.getTags().get(position);
             }
         });
 
-        TagListViewAdapter tagListViewAdapter = new TagListViewAdapter(this, tags);
+        Log.d("TAGS", Integer.toString(videoMetadata.getTags().size()));
+        for (Tag tag : videoMetadata.getTags()) {
+            Log.d("TAG", tag.getLabel());
+        }
+        TagListViewAdapter tagListViewAdapter = new TagListViewAdapter(this, videoMetadata.getTags());
         tagListView.setAdapter(tagListViewAdapter);
 
         // ********** WIKI ********** //
