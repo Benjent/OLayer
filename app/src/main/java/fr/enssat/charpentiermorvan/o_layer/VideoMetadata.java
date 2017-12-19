@@ -22,6 +22,7 @@ public class VideoMetadata {
 
     public VideoMetadata(JSONObject videoMetadata) {
         this.name = null;
+        this.tags = new HashMap<>();
 
         try {
             setName(videoMetadata.getString("name"));
