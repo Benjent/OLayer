@@ -80,10 +80,9 @@ public class VideoViewActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
                 videoMetadata.getTags().get(position).getLabel();
-                Log.i("Tag clicked", videoMetadata.getTags().get(position).getLabel());
-                Log.i("Tag clicked", videoMetadata.getTags().get(position).getTimeStamp().toString());
 
                 wikiView.loadUrl("https://en.wikipedia.org/wiki/" + videoMetadata.getTags().get(position).getLabel());
+                videoView.seekTo(videoMetadata.getTags().get(position).getTimeStamp() * 10);
             }
         });
 
