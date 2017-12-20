@@ -17,9 +17,7 @@ import java.util.List;
 
 public class VideoMetadata implements Parcelable {
 
-    private String name;
-    private String url;
-    private String thumbnailUrl;
+    private String name, url, pageUrl, thumbnailUrl;
     private ArrayList<Tag> tags;
 
     public VideoMetadata(JSONObject videoMetadata) {
@@ -29,6 +27,7 @@ public class VideoMetadata implements Parcelable {
         try {
             setName(videoMetadata.getString("name"));
             setUrl(videoMetadata.getString("url"));
+            setPageUrl(videoMetadata.getString("pageUrl"));
 
             // Thumbnail
             JSONObject thumbnail = videoMetadata.getJSONObject("thumbnail");
@@ -72,11 +71,17 @@ public class VideoMetadata implements Parcelable {
         this.tags.add(tag);
     }
 
-    public void setUrl(String uri) {
-        this.url = uri;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getUrl() { return this.url; }
+
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
+    }
+
+    public String getPageUrl() { return this.pageUrl; }
 
     public void setThumbnailUrl(String url) {
         this.thumbnailUrl = url;

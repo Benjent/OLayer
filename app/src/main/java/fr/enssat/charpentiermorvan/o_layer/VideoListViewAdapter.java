@@ -1,6 +1,7 @@
 package fr.enssat.charpentiermorvan.o_layer;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,7 @@ public class VideoListViewAdapter extends ArrayAdapter<VideoMetadata> {
 
         TextView textView = (TextView) itemView.findViewById(R.id.name);
 
-        TaskDownloadImage t = new TaskDownloadImage(thumbnailImageView);
-        t.execute(metadataArray.get(position).getThumbnailUrl());
-
+        new TaskDownloadImage(thumbnailImageView).execute(metadataArray.get(position).getThumbnailUrl());
 
         textView.setText(metadataArray.get(position).getName());
 

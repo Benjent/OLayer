@@ -90,7 +90,7 @@ public class VideoViewActivity extends Activity {
 
         // ********** WIKI ********** //
 
-        wikiView.loadUrl("https://en.wikipedia.org/wiki/Big_Buck_Bunny");
+        wikiView.loadUrl(videoMetadata.getPageUrl());
 
         //setContentView(wikiView);
 
