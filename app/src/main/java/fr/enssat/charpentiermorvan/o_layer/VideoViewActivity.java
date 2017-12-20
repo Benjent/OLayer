@@ -48,10 +48,10 @@ public class VideoViewActivity extends Activity {
         wikiView = (WebView) findViewById(R.id.WikiView);
         wikiView.getSettings().setJavaScriptEnabled(true);
         wikiView.setWebViewClient(new WebViewClient());
-
+        final MediaController mediacontroller;
         try {
             // Start the MediaController
-            MediaController mediacontroller = new MediaController(
+            mediacontroller = new MediaController(
                     VideoViewActivity.this);
             mediacontroller.setAnchorView(videoView);
             // Get the URL from String VideoURL
@@ -59,18 +59,18 @@ public class VideoViewActivity extends Activity {
             videoView.setMediaController(mediacontroller);
             videoView.setVideoURI(video);
 
+            videoView.requestFocus();
+            videoView.setOnPreparedListener(new OnPreparedListener() {
+                // Close the progress bar and play the video
+                public void onPrepared(MediaPlayer mp) {
+                    mediacontroller.setAnchorView(videoView);
+                    videoView.start();
+                }
+            });
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
-
-        videoView.requestFocus();
-        videoView.setOnPreparedListener(new OnPreparedListener() {
-            // Close the progress bar and play the video
-            public void onPrepared(MediaPlayer mp) {
-                videoView.start();
-            }
-        });
 
         // ********** TAGS ********** //
         ListView tagListView = (ListView) findViewById(R.id.tagListView);
