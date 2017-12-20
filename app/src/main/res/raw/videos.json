@@ -9,32 +9,37 @@
       "tags": [
         {
           "label": "Butterfly",
-          "timestamp": 770
+          "timestamp": 77,
+          "url": "https://en.wikipedia.org/wiki/Butterfly"
         },
         {
           "label": "Squirrel",
-          "timestamp": 1000
+          "timestamp": 118,
+          "url": "https://en.wikipedia.org/wiki/Squirrel"
         },
         {
-          "label": "Butterfly",
-          "timestamp": 7700
+          "label": "Jump",
+          "timestamp": 405,
+          "url": "https://en.wikipedia.org/wiki/jump"
         },
         {
-          "label": "Last one",
-          "timestamp": 666666
+          "label": "Kite",
+          "timestamp": 483,
+          "url": "https://en.wikipedia.org/wiki/kite"
         }
       ]
     },
     {
-      "name": "Move Your Feet",
-      "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
+      "name": "Toy Story",
+      "url": "http://www.html5videoplayer.net/videos/toystory.mp4",
       "thumbnail": {
-        "url": "https://images.rapgenius.com/6c94e840dc6080476d8bb2f008b4f339.480x360x1.jpg"
+        "url": "http://disneyportugal.files.wordpress.com/2009/10/toy-story-3-1893.jpg"
       },
       "tags": [
         {
           "label": "Butterfly",
-          "timestamp": 77
+          "timestamp": 77,
+          "url": "https://en.wikipedia.org/wiki/Butterfly"
         }
       ]
     }
