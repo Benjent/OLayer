@@ -38,8 +38,9 @@ public class VideoMetadata implements Parcelable {
 
             for (int i = 0; i < videoTags.length(); i++) {
                 JSONObject videoTag = (JSONObject) videoTags.get(i);
-                this.tags.add(new Tag(videoTag.getString("label"), videoTag.getInt("timestamp")));
+                this.tags.add(new Tag(videoTag.getString("label"), videoTag.getInt("timestamp"), videoTag.getString("url")));
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

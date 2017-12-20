@@ -78,18 +78,13 @@ public class VideoViewActivity extends Activity {
         tagListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                Tag tag = videoMetadata.getTags().get(position);
 
-                videoMetadata.getTags().get(position).getLabel();
-
-                wikiView.loadUrl("https://en.wikipedia.org/wiki/" + videoMetadata.getTags().get(position).getLabel());
-                videoView.seekTo(videoMetadata.getTags().get(position).getTimeStamp() * 10);
+                wikiView.loadUrl(tag.getUrl());
+                videoView.seekTo(tag.getTimeStamp() * 1000);
             }
         });
-
-        Log.d("TAGS", Integer.toString(videoMetadata.getTags().size()));
-        for (Tag tag : videoMetadata.getTags()) {
-            Log.d("TAG", tag.getLabel());
-        }
+        
         TagListViewAdapter tagListViewAdapter = new TagListViewAdapter(this, videoMetadata.getTags());
         tagListView.setAdapter(tagListViewAdapter);
 
