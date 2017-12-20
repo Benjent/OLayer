@@ -12,24 +12,24 @@
           "timestamp": 77
         },
         {
-          "label": "Butterfly",
-          "timestamp": 77
+          "label": "Squirrel",
+          "timestamp": 100
         },
         {
           "label": "Butterfly",
           "timestamp": 77
         },
         {
-          "label": "Butterfly",
-          "timestamp": 77
-        },
+          "label": "Last one",
+          "timestamp": 666
+        }
       ]
     },
     {
-      "name": "Big Bunny",
+      "name": "Move Your Feet",
       "url": "http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4",
       "thumbnail": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Big_Buck_Bunny_-_forest.jpg"
+        "url": "https://images.rapgenius.com/6c94e840dc6080476d8bb2f008b4f339.480x360x1.jpg"
       },
       "tags": [
         {

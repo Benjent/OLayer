@@ -34,6 +34,7 @@ public class VideoViewActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.videoview_main);
       
@@ -42,6 +43,11 @@ public class VideoViewActivity extends Activity {
 
         // ********** VIDEO ********** //
         videoView = findViewById(R.id.VideoView);
+
+        // Prepare wiki view
+        wikiView = (WebView) findViewById(R.id.WikiView);
+        wikiView.getSettings().setJavaScriptEnabled(true);
+        wikiView.setWebViewClient(new WebViewClient());
 
         try {
             // Start the MediaController
@@ -68,10 +74,16 @@ public class VideoViewActivity extends Activity {
 
         // ********** TAGS ********** //
         ListView tagListView = (ListView) findViewById(R.id.tagListView);
+
         tagListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                videoMetadata.getTags().get(position);
+
+                videoMetadata.getTags().get(position).getLabel();
+                Log.i("Tag clicked", videoMetadata.getTags().get(position).getLabel());
+                Log.i("Tag clicked", videoMetadata.getTags().get(position).getTimeStamp().toString());
+
+                wikiView.loadUrl("https://en.wikipedia.org/wiki/" + videoMetadata.getTags().get(position).getLabel());
             }
         });
 
@@ -84,13 +96,7 @@ public class VideoViewActivity extends Activity {
 
         // ********** WIKI ********** //
 
-        wikiView = (WebView) findViewById(R.id.WikiView);
-        wikiView.getSettings().setJavaScriptEnabled(true);
-
-        wikiView.setWebViewClient(new WebViewClient());
-
-        //wikiView.loadUrl("https://en.wikipedia.org/wiki/Main_Page");
-        wikiView.loadUrl("https://www.google.fr");
+        wikiView.loadUrl("https://en.wikipedia.org/wiki/Big_Buck_Bunny");
 
         //setContentView(wikiView);
 
