@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    static String VIDEO_URL_MESSAGE = "video_url";
-    Button button;
+    static String VIDEO_METADATA_MESSAGE = "video_metadata";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +25,17 @@ public class MainActivity extends Activity {
 
         final ArrayList<VideoMetadata> videosMetadata = parser.parse();
 
-        ListView videoListView = (ListView) findViewById(R.id.VideoListView);
+        ListView videoListView = findViewById(R.id.VideoListView);
         videoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                VideoMetadata videoMetadata = videosMetadata.get(position);
+
                 Intent myIntent = new Intent(MainActivity.this,
                         VideoViewActivity.class);
-                myIntent.putExtra(VIDEO_URL_MESSAGE, videosMetadata.get(position).getUrl());
+
+                myIntent.putExtra(VIDEO_METADATA_MESSAGE, videoMetadata);
+
                 startActivity(myIntent);
             }
         });

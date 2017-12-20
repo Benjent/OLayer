@@ -8,11 +8,17 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import java.util.ArrayList;
 
 /**
  * Created by benjent on 07/12/17.
@@ -24,19 +30,24 @@ public class VideoViewActivity extends Activity {
     VideoView videoView;
     WebView wikiView;
 
-    // Insert your Video URL
-    String VideoURL;
+    VideoMetadata videoMetadata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.videoview_main);
       
         Intent intent = getIntent();
-        VideoURL = intent.getStringExtra(MainActivity.VIDEO_URL_MESSAGE);
+        videoMetadata = (VideoMetadata) intent.getParcelableExtra(MainActivity.VIDEO_METADATA_MESSAGE);
 
         // ********** VIDEO ********** //
-        videoView = (VideoView) findViewById(R.id.VideoView);
+        videoView = findViewById(R.id.VideoView);
+
+        // Prepare wiki view
+        wikiView = (WebView) findViewById(R.id.WikiView);
+        wikiView.getSettings().setJavaScriptEnabled(true);
+        wikiView.setWebViewClient(new WebViewClient());
 
         try {
             // Start the MediaController
@@ -44,7 +55,7 @@ public class VideoViewActivity extends Activity {
                     VideoViewActivity.this);
             mediacontroller.setAnchorView(videoView);
             // Get the URL from String VideoURL
-            Uri video = Uri.parse(VideoURL);
+            Uri video = Uri.parse(videoMetadata.getUrl());
             videoView.setMediaController(mediacontroller);
             videoView.setVideoURI(video);
 
@@ -61,15 +72,30 @@ public class VideoViewActivity extends Activity {
             }
         });
 
+        // ********** TAGS ********** //
+        ListView tagListView = (ListView) findViewById(R.id.tagListView);
+
+        tagListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+
+                videoMetadata.getTags().get(position).getLabel();
+
+                wikiView.loadUrl("https://en.wikipedia.org/wiki/" + videoMetadata.getTags().get(position).getLabel());
+                videoView.seekTo(videoMetadata.getTags().get(position).getTimeStamp() * 10);
+            }
+        });
+
+        Log.d("TAGS", Integer.toString(videoMetadata.getTags().size()));
+        for (Tag tag : videoMetadata.getTags()) {
+            Log.d("TAG", tag.getLabel());
+        }
+        TagListViewAdapter tagListViewAdapter = new TagListViewAdapter(this, videoMetadata.getTags());
+        tagListView.setAdapter(tagListViewAdapter);
+
         // ********** WIKI ********** //
 
-        wikiView = (WebView) findViewById(R.id.WikiView);
-        wikiView.getSettings().setJavaScriptEnabled(true);
-
-        wikiView.setWebViewClient(new WebViewClient());
-
-        //wikiView.loadUrl("https://en.wikipedia.org/wiki/Main_Page");
-        wikiView.loadUrl("https://www.google.fr");
+        wikiView.loadUrl("https://en.wikipedia.org/wiki/Big_Buck_Bunny");
 
         //setContentView(wikiView);
 
