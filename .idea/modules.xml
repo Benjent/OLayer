@@ -4,8 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/O-Layer.iml" filepath="$PROJECT_DIR$/O-Layer.iml" />
       <module fileurl="file:///mnt/FE84A25184A20C69/DEVELOPMENT/OLayer/OLayer.iml" filepath="/mnt/FE84A25184A20C69/DEVELOPMENT/OLayer/OLayer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file:///mnt/FE84A25184A20C69/DEVELOPMENT/OLayer/app/app.iml" filepath="/mnt/FE84A25184A20C69/DEVELOPMENT/OLayer/app/app.iml" />
+      <module fileurl="file:///mnt/FE84A25184A20C69/DEVELOPMENT/OLayer/app/app.iml" filepath="/mnt/FE84A25184A20C69/DEVELOPMENT/OLayer/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

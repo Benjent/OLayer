@@ -82,8 +82,8 @@ public class VideoViewActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 Tag tag = videoMetadata.getTags().get(position);
 
-                wikiView.loadUrl(tag.getUrl());
-                videoView.seekTo(tag.getTimeStamp() * 1000);
+                //wikiView.loadUrl(tag.getUrl());
+                videoView.seekTo(tag.getTimeStamp() * 1000 + 100);
             }
         });
         
@@ -94,60 +94,7 @@ public class VideoViewActivity extends Activity {
         wikiView.loadUrl(videoMetadata.getPageUrl());
 
         Handler h = new Handler();
-        Thread checkVideo = new CheckVideo(videoView,  videoMetadata.getTags(), wikiView, h);
+        Thread checkVideo = new CheckVideoThread(videoView, videoMetadata, wikiView, h);
         checkVideo.start();
-    }
-}
-
-class CheckVideo extends Thread {
-    VideoView videoView;
-    ArrayList<Tag> tags;
-    WebView wikiView;
-    Handler h;
-    final Index currentTagIndex = new Index();
-
-    CheckVideo(VideoView videoView, ArrayList<Tag> tags, WebView wikiView, Handler h) {
-        this.videoView = videoView;
-        this.tags = tags;
-        this.wikiView = wikiView;
-        this.h = h;
-    }
-
-    class Index {
-        public int i;
-
-        public Index() {
-            this.i = 0;
-        }
-    }
-
-    @Override
-    public void run() {
-        try {
-            while(true) {
-                sleep(1000);
-                int currentTime = this.videoView.getCurrentPosition();
-                final Index index = new Index();
-                int i = 0;
-                for(final Tag tag : this.tags) {
-                    if (tag.getTimeStamp() > currentTime / 1000) {
-                        break;
-                    }
-                    this.currentTagIndex.i = i;
-                    i++;
-                }
-
-                if (this.currentTagIndex.i != i) {
-                    h.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            wikiView.loadUrl(tags.get(currentTagIndex.i).getUrl());
-                        }
-                    });
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
