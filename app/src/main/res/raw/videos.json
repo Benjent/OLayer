@@ -44,6 +44,77 @@
           "url": "https://en.wikipedia.org/wiki/Butterfly"
         }
       ]
+    },
+    {
+      "name": "Junior Senior - Move Your Feet",
+      "url": "http://www.html5videoplayer.net/videos/toystory.mp4",
+      "pageUrl": "https://en.wikipedia.org/wiki/Toy_Story",
+      "thumbnail": {
+        "url": "https://i.pinimg.com/originals/89/4f/5b/894f5bc318225826b1090a4fb0126834.png"
+      },
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77,
+          "url": "https://en.wikipedia.org/wiki/Butterfly"
+        }
+      ]
+    },{
+      "name": "Badgers Badgers Badgers",
+      "url": "http://www.html5videoplayer.net/videos/toystory.mp4",
+      "pageUrl": "https://en.wikipedia.org/wiki/Toy_Story",
+      "thumbnail": {
+        "url": "http://www.albinoblacksheep.com/flash/960/badgers.jpg"
+      },
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77,
+          "url": "https://en.wikipedia.org/wiki/Butterfly"
+        }
+      ]
+    },{
+      "name": "Screaming teletubbies",
+      "url": "http://www.html5videoplayer.net/videos/toystory.mp4",
+      "pageUrl": "https://en.wikipedia.org/wiki/Toy_Story",
+      "thumbnail": {
+        "url": "http://i0.kym-cdn.com/photos/images/original/001/036/133/c15.jpg"
+      },
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77,
+          "url": "https://en.wikipedia.org/wiki/Butterfly"
+        }
+      ]
+    },{
+      "name": "Lemongrab's UNACCEPTABLE",
+      "url": "http://www.html5videoplayer.net/videos/toystory.mp4",
+      "pageUrl": "https://en.wikipedia.org/wiki/Toy_Story",
+      "thumbnail": {
+        "url": "https://coubsecure-s.akamaihd.net/get/b19/p/coub/simple/cw_timeline_pic/2980fd458f7/7c37ea062a26d8defe51a/big_1446222540_image.jpg"
+      },
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77,
+          "url": "https://en.wikipedia.org/wiki/Butterfly"
+        }
+      ]
+    },{
+      "name": "Equations différentielles Tuto",
+      "url": "http://www.html5videoplayer.net/videos/toystory.mp4",
+      "pageUrl": "https://en.wikipedia.org/wiki/Toy_Story",
+      "thumbnail": {
+        "url": "http://calque.pagesperso-orange.fr/logiciels/maxima/maxi2.png"
+      },
+      "tags": [
+        {
+          "label": "Butterfly",
+          "timestamp": 77,
+          "url": "https://en.wikipedia.org/wiki/Butterfly"
+        }
+      ]
     }
   ]
 }
