@@ -21,6 +21,9 @@ public class VideoMetadata implements Parcelable {
     private String name, url, pageUrl, thumbnailUrl;
     private ArrayList<Tag> tags;
 
+    /**
+     * @param videoMetadata
+     */
     public VideoMetadata(JSONObject videoMetadata) {
         this.name = null;
         this.url = null;
@@ -49,6 +52,9 @@ public class VideoMetadata implements Parcelable {
 
     }
 
+    /**
+     * @param in
+     */
     private VideoMetadata(Parcel in) {
         this.tags = new ArrayList<>();
 
@@ -59,38 +65,69 @@ public class VideoMetadata implements Parcelable {
         in.readTypedList(this.tags, Tag.CREATOR);
     }
 
+    /**
+     * @return the name of the video
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return the list of tags of the video
+     */
     public ArrayList<Tag> getTags() {
         return tags;
     }
 
+    /**
+     * Adds a tag to the video
+     * @param tag
+     */
     public void addTag(Tag tag) {
         this.tags.add(tag);
     }
 
+    /**
+     * @param url
+     */
     public void setUrl(String url) {
         this.url = url;
     }
 
+    /**
+     * @return the video URL
+     */
     public String getUrl() { return this.url; }
 
+    /**
+     * @param pageUrl
+     */
     public void setPageUrl(String pageUrl) {
         this.pageUrl = pageUrl;
     }
 
+    /**
+     * @return the web URL assigned with the video
+     */
     public String getPageUrl() { return this.pageUrl; }
 
+    /**
+     * @param url
+     */
     public void setThumbnailUrl(String url) {
         this.thumbnailUrl = url;
     }
 
+    /**
+     * @return the URL of the thumbnail image
+     */
     public String getThumbnailUrl() {
         return this.thumbnailUrl;
     }

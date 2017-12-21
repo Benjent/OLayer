@@ -22,26 +22,34 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         VideoMetadataParser parser = new VideoMetadataParser(this);
+        ListView videoListView = findViewById(R.id.VideoListView);
 
+        // Parse the JSON file
         final ArrayList<VideoMetadata> videosMetadata = parser.parse();
 
-        ListView videoListView = findViewById(R.id.VideoListView);
+        // Set onItemClick behavior.
         videoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                // Get the matching VideoMetadata object
                 VideoMetadata videoMetadata = videosMetadata.get(position);
 
+                // Create an Intent to VideoViewActivity
                 Intent myIntent = new Intent(MainActivity.this,
                         VideoViewActivity.class);
 
+                // Put the VideoMedata object as an extra
                 myIntent.putExtra(VIDEO_METADATA_MESSAGE, videoMetadata);
 
+                // Start the VideoViewActivity
                 startActivity(myIntent);
             }
         });
 
+        // Create an ArrayAdapter using the list of VideoMetadata objects
         VideoListViewAdapter videoListViewAdapter = new VideoListViewAdapter(this, videosMetadata);
 
+        // Set the adapter
         videoListView.setAdapter(videoListViewAdapter);
     }
 }

@@ -13,13 +13,16 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Created by caillou on 12/7/17.
+ * ArrayAdapter allowing to list a set of VideoMedata object
  */
-
 public class VideoListViewAdapter extends ArrayAdapter<VideoMetadata> {
     private Context context;
     private ArrayList<VideoMetadata> metadataArray;
 
+    /**
+     * @param mContext the context of the application
+     * @param metadataArray an ArrayList of VideoMetadata
+     */
     public VideoListViewAdapter (Context mContext, ArrayList<VideoMetadata> metadataArray) {
         super(mContext, -1, metadataArray);
 

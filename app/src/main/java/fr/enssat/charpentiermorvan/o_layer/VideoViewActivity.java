@@ -21,7 +21,7 @@ import android.widget.VideoView;
 import java.util.ArrayList;
 
 /**
- * Created by benjent on 07/12/17.
+ * Activity displaying the enriched video
  */
 
 public class VideoViewActivity extends Activity {
@@ -37,7 +37,8 @@ public class VideoViewActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.videoview_main);
-      
+
+        // Get VideoMetadata object from the Intent
         Intent intent = getIntent();
         videoMetadata = (VideoMetadata) intent.getParcelableExtra(MainActivity.VIDEO_METADATA_MESSAGE);
 
@@ -90,8 +91,5 @@ public class VideoViewActivity extends Activity {
 
         // ********** WIKI ********** //
         wikiView.loadUrl(videoMetadata.getPageUrl());
-
-        //setContentView(wikiView);
-
     }
 }

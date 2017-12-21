@@ -17,20 +17,27 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 /**
- * Created by caillou on 12/7/17.
+ * Parses a JSON file and returns an ArrayList of VideoMetadata
  */
 
 public class VideoMetadataParser {
     private Context mContext;
 
+    /**
+     * @param context the context of the application
+     */
     public VideoMetadataParser(Context context) {
         this.mContext = context;
     }
 
+    /**
+     * @return an ArrayList of VideoMetadata objects
+     */
     public ArrayList<VideoMetadata> parse() {
         ArrayList<VideoMetadata> videoMetadataArray = new ArrayList<>();
 
         try {
+            // Read the JSON files
             InputStream is = mContext.getResources().openRawResource(R.raw.videos);
             Writer writer = new StringWriter();
             char[] buffer = new char[1024];
@@ -45,12 +52,14 @@ public class VideoMetadataParser {
                 e.printStackTrace();
             }
 
+            // Create a JSONObject from the JSON file
             String metadataJSON = writer.toString();
-
             JSONObject metadata = new JSONObject(metadataJSON);
 
+            // Extract the video array
             JSONArray videos = metadata.getJSONArray("videos");
 
+            // Extract each video and create VideoMetadata objects
             for (int i = 0; i < videos.length(); i++) {
                 JSONObject videoMetadataJSON = (JSONObject) videos.get(i);
 
