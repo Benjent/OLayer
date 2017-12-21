@@ -89,7 +89,6 @@ public class VideoViewActivity extends Activity {
         tagListView.setAdapter(tagListViewAdapter);
 
         // ********** WIKI ********** //
-
         wikiView.loadUrl(videoMetadata.getPageUrl());
 
         //setContentView(wikiView);

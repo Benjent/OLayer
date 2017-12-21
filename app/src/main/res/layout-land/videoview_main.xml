@@ -7,7 +7,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:weightSum="2"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <VideoView
             android:id="@+id/VideoView"
@@ -26,9 +33,12 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
     <WebView
         android:id="@+id/WikiView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
 </LinearLayout>
