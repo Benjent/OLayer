@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -91,5 +92,49 @@ public class VideoViewActivity extends Activity {
 
         // ********** WIKI ********** //
         wikiView.loadUrl(videoMetadata.getPageUrl());
+
+        Handler h = new Handler();
+        Thread checkVideo = new CheckVideo(videoView,  videoMetadata.getTags(), wikiView, h);
+        checkVideo.start();
+    }
+}
+
+class CheckVideo extends Thread {
+    VideoView videoView;
+    ArrayList<Tag> tags;
+    WebView wikiView;
+    Handler h;
+    int currentTagIndex = -1;
+
+    CheckVideo(VideoView videoView, ArrayList<Tag> tags, WebView wikiView, Handler h) {
+        this.videoView = videoView;
+        this.tags = tags;
+        this.wikiView = wikiView;
+        this.h = h;
+    }
+
+    @Override
+    public void run() {
+        try {
+            while(true) {
+                sleep(500);
+                int currentTime = this.videoView.getCurrentPosition();
+                int i = 0;
+                for(final Tag tag : this.tags) {
+                    if (tag.getTimeStamp() < currentTime / 1000 && this.currentTagIndex != i) {
+                        this.currentTagIndex = i;
+                        h.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                wikiView.loadUrl(tag.getUrl());
+                            }
+                        });
+                    }
+                    i++;
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
