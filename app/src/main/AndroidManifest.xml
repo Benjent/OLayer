@@ -21,8 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".VideoViewActivity"
-            android:screenOrientation="landscape" />
+            android:name=".VideoViewActivity" />
 
     </application>
 

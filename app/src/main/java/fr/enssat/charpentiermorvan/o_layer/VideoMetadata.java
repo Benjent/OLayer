@@ -2,6 +2,7 @@ package fr.enssat.charpentiermorvan.o_layer;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,6 +23,8 @@ public class VideoMetadata implements Parcelable {
 
     public VideoMetadata(JSONObject videoMetadata) {
         this.name = null;
+        this.url = null;
+        this.pageUrl = null;
         this.tags = new ArrayList<>();
 
         try {
@@ -51,6 +54,7 @@ public class VideoMetadata implements Parcelable {
 
         this.setName(in.readString());
         this.setUrl(in.readString());
+        this.setPageUrl(in.readString());
         this.setThumbnailUrl(in.readString());
         in.readTypedList(this.tags, Tag.CREATOR);
     }
@@ -100,6 +104,7 @@ public class VideoMetadata implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.getName());
         parcel.writeString(this.getUrl());
+        parcel.writeString(this.getPageUrl());
         parcel.writeString(this.getThumbnailUrl());
         parcel.writeTypedList(this.getTags());
     }
