@@ -1,11 +1,8 @@
 package fr.enssat.charpentiermorvan.o_layer;
 
 import android.os.Handler;
-import android.util.Log;
 import android.webkit.WebView;
 import android.widget.VideoView;
-
-import java.util.ArrayList;
 
 /**
  * Check the video current time and update necessary elements
@@ -19,7 +16,13 @@ public class CheckVideoThread extends Thread {
     private int currentTagIndex;
     private String currentTagUrl;
 
-    CheckVideoThread(VideoView videoView, VideoMetadata videoMetadata, WebView wikiView, Handler handler) {
+    /**
+     * @param videoView the VideoView to check
+     * @param videoMetadata the video metadata
+     * @param wikiView the WebView to update
+     * @param handler the handler used to update the UI
+     */
+    public CheckVideoThread(VideoView videoView, VideoMetadata videoMetadata, WebView wikiView, Handler handler) {
         this.videoView = videoView;
         this.videoMetadata = videoMetadata;
         this.wikiView = wikiView;
@@ -32,11 +35,13 @@ public class CheckVideoThread extends Thread {
     public void run() {
         try {
             while(true) {
+                // Run this every 100ms
                 sleep(100);
+
+                // Get current position in the video
                 int currentTime = this.videoView.getCurrentPosition();
 
                 int i = -1;
-
                 for(Tag tag : this.videoMetadata.getTags()) {
                     if (tag.getTimeStamp() - 1 >= currentTime / 1000) {
                         break;
@@ -45,14 +50,18 @@ public class CheckVideoThread extends Thread {
                     i++;
                 }
 
+                // Check if new computed tag has already been loaded in the WebView
                 if (currentTagIndex != i) {
                     currentTagIndex = i;
+
+                    // Set the url to either the video url or the tag url base on the index of the tag
                     if (i >= 0) {
                         currentTagUrl = videoMetadata.getTags().get(i).getUrl();
                     } else {
                         currentTagUrl = videoMetadata.getPageUrl();
                     }
 
+                    // Update the WebView using the Handler
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
