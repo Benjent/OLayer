@@ -104,7 +104,7 @@ class CheckVideo extends Thread {
     ArrayList<Tag> tags;
     WebView wikiView;
     Handler h;
-    int currentTagIndex = -1;
+    final Index currentTagIndex = new Index();
 
     CheckVideo(VideoView videoView, ArrayList<Tag> tags, WebView wikiView, Handler h) {
         this.videoView = videoView;
@@ -113,24 +113,37 @@ class CheckVideo extends Thread {
         this.h = h;
     }
 
+    class Index {
+        public int i;
+
+        public Index() {
+            this.i = 0;
+        }
+    }
+
     @Override
     public void run() {
         try {
             while(true) {
-                sleep(500);
+                sleep(1000);
                 int currentTime = this.videoView.getCurrentPosition();
+                final Index index = new Index();
                 int i = 0;
                 for(final Tag tag : this.tags) {
-                    if (tag.getTimeStamp() < currentTime / 1000 && this.currentTagIndex != i) {
-                        this.currentTagIndex = i;
-                        h.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                wikiView.loadUrl(tag.getUrl());
-                            }
-                        });
+                    if (tag.getTimeStamp() > currentTime / 1000) {
+                        break;
                     }
+                    this.currentTagIndex.i = i;
                     i++;
+                }
+
+                if (this.currentTagIndex.i != i) {
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            wikiView.loadUrl(tags.get(currentTagIndex.i).getUrl());
+                        }
+                    });
                 }
             }
         } catch (InterruptedException e) {
